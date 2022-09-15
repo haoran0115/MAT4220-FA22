@@ -269,12 +269,11 @@ Then our solution would be
     \begin{enumerate}[label=(\alph*)]
         \item Let $y=0$, then we have
         \begin{align*}
-            u_{x}(x, 0) = \phi'(x) = 0
+            u_{x}(x, 0) = 0
         \end{align*}
-        this contradicts with the boundary condition $u(x,0)=\phi(x)=x$ since
-        \begin{align*}
-            \phi'(x) = 1 \neq 0
-        \end{align*}
+        which means along $(x, 0)$, $u$ is a constant.
+        This contradicts with the boundary condition $u(x,0)=\phi(x)=x$ since
+        $u(x, 0)$ is not a constant.
         Therefore, there is no solution.
 
         \item Applying the technique of characteristic curve, we know that
@@ -291,8 +290,8 @@ Then our solution would be
     \end{enumerate}
 \end{problem}
 
-\begin{problem}[P31 Q1]
-    \begin{enumerate}[label=(\alph*)]\
+\begin{problem}[P31 Q1]\
+    \begin{enumerate}[label=(\alph*)]
         \item The equation is $u_{xx} -4u_{xy} + u_{yy} + 4u = 0$
         \begin{align*}
             A = \begin{bmatrix}
