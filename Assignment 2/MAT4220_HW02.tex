@@ -159,9 +159,9 @@
 \begin{problem}[P38 Q2]
 Using the formula for the wave equation
 \begin{align*}
-    u(x,t) &= \frac{1}{2}(\phi(ct+x) + \phi(-ct+x)) + \frac{1}{2c}\int_{-ct+x}^{ct+x} \phi(s)\d s\\
+    u(x,t) &= \frac{1}{2}(\psi(ct+x) + \psi(-ct+x)) + \frac{1}{2c}\int_{-ct+x}^{ct+x} \phi(s)\d s\\
     &= \frac{1}{2}[\log(1+(ct+x)^2) + \log(1+(-ct+x)^2)] + \left. (4s+\frac{1}{2}s^2) \right |_{-ct+x}^{ct+x}\\
-    &= \frac{1}{2}[\log(1+(ct+x)^2) + \log(1+(-ct+x)^2)] + 8ct + 2xct
+    &= \frac{1}{2}[\log(1+(ct+x)^2) + \log(1+(-ct+x)^2)] + 8ct + 2cxt
 \end{align*}
 \end{problem}
 
@@ -187,6 +187,7 @@ Since $\phi$ and $\psi$ are odd functions, then
     &= -\frac{1}{2}(\phi(-ct+x) + \phi(ct+x)) -
     \frac{1}{2c}\int_{-ct+x}^{ct+x}\psi(u)\d u = -u(x,t)
 \end{align*}
+Therefore $u(-x, t)=-u(x,t)$, $u$ an odd function in $x$.
 \end{problem}
 
 \begin{problem}[P38 Q9]
@@ -214,18 +215,18 @@ Then the general solution of the equation $\partial_\xi\partial_\eta u = 0$ woul
 Then
 \begin{align*}
     \phi(x) &= F(x) + G(4x)\\
-    \psi(x) &= -F'(x) + G'(4x)\Rightarrow \Psi(x) = -F(x) + \frac{1}{4}G(4x)
+    \psi(x) &= -F'(x) + 4G'(4x)\Rightarrow \Psi(x) = -F(x) + G(4x)
 \end{align*}
 where $\Psi(x)$ is any function that $\Psi'(x)=\psi(x)$, then
 \begin{align*}
-    F(x) &= \frac{1}{5}(\phi(x) - 4\Psi(x))\\
-    G(4x) &= \frac{4}{5}(\phi(x) + \Psi(x)) \Rightarrow G(x) = \frac{4}{5}(\phi(x/4) + \Psi(x/4)) \\
-    u(x) &= \frac{1}{5}(\phi(x-t) - 4\Psi(x-t)) + \frac{4}{5}(\phi(x+t/4) + \Psi(x+t/4))\\
-    &= \frac{1}{5}(\phi(x-t)+4\phi(x+t/4)) + \frac{4}{5}\int_{x-t}^{x+t/4}\psi(s)\d s
+    F(x) &= \frac{1}{2}(\phi(x) - \Psi(x))\\
+    G(4x) &= \frac{1}{2}(\phi(x) + \Psi(x))\\
+    u(x) &= \frac{1}{2}(\phi(x-t) - \Psi(x-t)) + \frac{1}{2}(\phi(x+t/4)+\Psi(x+t/4))\\
+    &= \frac{1}{2}[\phi(x-t)+\phi(x+t/4)] + \frac{1}{2}\int_{x-t}^{x+t/4}\psi(s)\d s
 \end{align*}
 According to the boundary condition $u(x, 0)=x^2$, $u_t(x, 0)=e^x$, we have
 \begin{align*}
-    u(x) &= \frac{1}{5}[(x-t)^2+4(x+t/4)^2] + \frac{4}{5}(e^{x+t/4} - e^{x-t})
+    u(x) &= \frac{1}{2}[(x-t)^2+(x+t/4)^2] + \frac{1}{2}e^x(e^{t/4}-e^{-t})
 \end{align*}
 
 \begin{problem}[P41 Q1]
@@ -240,10 +241,110 @@ According to the boundary condition $u(x, 0)=x^2$, $u_t(x, 0)=e^x$, we have
         \Rightarrow u_t = 0, u_x = 0
     \end{align*}
     by the first vanish theorem.
-    Then we can solve that $u=k$ for some constant $k$.
+    Then we can solve that $u(x,t)=k$ for some constant $k$.
     Since $\phi(x)=u(x,0)=0$, we have $u(x,t)=u(x,0)=0$.
 \end{problem}
 
+\newpage
+\begin{problem}[P46 Q4]\
+    \begin{enumerate}
+        \item Since the maximum of $u$ is on $\partial_p\Omega_T$, then 
+        \begin{align*}
+            \max u(x, t) = \max_{\partial_p\Omega_T}u(x, t) = \max_{x\in[0, 1]}\{0, 4x(1-x)\} = 1
+        \end{align*}
+        Also, since $u$ not a constant function, then $\forall (x, t)\in\Omega_T\setminus\partial_p\Omega_T$
+        \begin{align*}
+            u(x, t) < \max u(x, t) = 1
+        \end{align*}
+        Similarly, according to the minimum principle, one can show that $\min u(x, t) = 0$
+        and thus
+        \begin{align*}
+            u(x, t) > 0\ \forall (x, t)\in\Omega_T\setminus\partial_p\Omega_T
+        \end{align*}
+        Finally we have $0 < u(x, t) < 1$ on 
+        $\Omega_T\setminus\partial_p\Omega_T=(0,1)\times (0, \infty)$.
+
+        \item Define $v(x, t) = u(1-x, t)$.
+        \begin{claim}
+            $v_t=v_{xx}$
+        \end{claim}
+        \begin{proof}
+        Since
+        \begin{align*}
+            v_t(x, t) &= u_t(1-x, t)\\
+            v_{xx}(x, t) &= \partial_x^2u(1-x, t) 
+            = \partial_x\frac{\d (1-x)}{\d x}\frac{\partial}{\partial (1-x)}u(1-x, t) = 
+            -\partial_x u_x(1-x, t)\\
+            &= -\frac{\d (1-x)}{\d x}\frac{\partial}{\partial (1-x)}u_x(1-x, t)\\
+            &= u_{xx}(1-x, t)
+        \end{align*}
+        Then $v_t(x, t)-v_{xx}(x, t) = 0$.
+        \end{proof}
+        We can also show that $u$ and $v$ have the same boundary condition where
+        \begin{align*}
+            v(x, 0) = u(1-x,0) = 4x(1-x),\ v(0, t) = u(1, t) = u(0, t) = v(1, t) = 0
+        \end{align*}
+        Then, according to the uniqueness of diffusion equation, $u(x,t)=v(x,t)$ on $\Omega_T$.
+
+        \item The energy method shows that with $u(x, 0)=0$, $u_t(0, t)=u_t(0, l)=0$, we have
+        \begin{align*}
+            \frac{\d }{\d t}E &= -\kappa\int_\Omega  u_x^2\d x \leq 0
+        \end{align*}
+        Since $0 < u < 1$ in $\Omega_T\setminus\partial_p\Omega_T$,
+        $\forall t$ $\exists x\in(0, 1)$ s.t. $u_x(x, t)\neq 0$.
+        Therefore $\forall t$
+        \begin{align*}
+            \frac{\d }{\d t}E &= -\kappa\int_\Omega  u_x^2\d x <0
+        \end{align*}
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}[P46 Q6]
+To prove the comparison principle, we can prove an equivalent statement:
+if $u$ is a solution to diffusion equation with $u\geq 0$ on $\partial_p\Omega_T$, then 
+we have $u\geq 0$ on $\Omega_T$.
+\begin{proof}
+    According to the minimum principle
+    \begin{align*}
+        \min_{\Omega_T} u = \min_{\partial_p\Omega_T} u\geq 0
+    \end{align*}
+    then $u\geq 0$ on $\Omega_T$.
+\end{proof}
+Therefore $\forall u, v$ solution to the diffusion equation with same boundary condition and $u\leq v$,
+we know that $w=v-u$ a solution to the diffusion equation with zero boundary condition.
+According to our claim, on $\Omega=[0,l]\times [0, \infty)$
+\begin{align*}
+    w \geq 0 \Rightarrow v - u \geq 0
+\end{align*}
+\end{problem}
+
+\begin{problem}
+\begin{claim}
+    The function $v(x, t) = u(x, t) - \epsilon t$ with $\epsilon>0$ takes its maximum on
+    $\partial_p\Omega_T$.
+\end{claim}
+\begin{proof}
+    Prove by contradiction.
+    Suppose $\exists (x_\epsilon, t_\epsilon)\in\Omega_T\setminus\partial_p\Omega_T$ s.t.
+    \begin{align*}
+        \max_{\Omega_T} v(x, t) = v(x_\epsilon, t_\epsilon)
+    \end{align*}
+    Then $v_{t}(x_\epsilon, t_\epsilon) = u_t(x_\epsilon, t_\epsilon) - \epsilon\geq 0$, $v_x(x_\epsilon,t_\epsilon)=0$, 
+    $v_{xx}(x_\epsilon, t_\epsilon)=u_{xx}(x_\epsilon,t_\epsilon) \leq 0$, then we have
+    $v_{t}(x_\epsilon, t_\epsilon)-\kappa v_{xx}(x_\epsilon, t_\epsilon)\geq 0$. However
+    \begin{align*}
+        v_{t}(x_\epsilon, t_\epsilon) - \kappa v_{xx}(x_\epsilon, t_\epsilon) = u_t(x_\epsilon, t_\epsilon) - \kappa u_{xx}(x_\epsilon, t_\epsilon) - \epsilon
+        \leq -\epsilon < 0
+    \end{align*}
+    Then we have contradiction.
+    Hence $v$ takes its maximum on some point $(x_\epsilon, t_\epsilon)\in\partial_p\Omega_T$.
+\end{proof}
+Since $\partial_p\Omega_T$ compact, we can pick a sequence
+of $\epsilon_n$ s.t. $(x_{\epsilon_n}, t_{\epsilon_n})\rightarrow (x_0, t_0)\in\partial_p
+\Omega_T$ as $\epsilon_n\rightarrow 0^+$ (every bounded sequence has a converged subsequence).
+Using the fact that $\lim_{\epsilon\rightarrow 0^+}\max v = \max u$ which was proved in the class,
+$u$ takes its maximum on $(x_0, y_0)\in\partial_p\Omega_T$.
+\end{problem}
 
 
 
