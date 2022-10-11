@@ -1,0 +1,357 @@
+\documentclass[twoside,11pt]{article}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{sectsty}
+\usepackage{mathrsfs} % mathscr
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{listings}
+% \usepackage{amsart}
+
+% change mathcal shape
+\usepackage[mathcal]{eucal}
+
+% allow H option of figure
+\usepackage{float}
+
+% define math operators
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\X}{\mathbb{Y}}
+\renewcommand{\L}{\mathcal{L}}
+% \renewcommand{\d}{\mathrm{d}}
+\renewcommand*\d{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\renewcommand{\mod}[1]{\ (\mathrm{mod}\ #1)}
+
+% section font style
+\sectionfont{\sffamily\Large}
+\subsectionfont{\sffamily\normalsize}
+\subsubsectionfont{\bf}
+
+% line spreading and break
+\hyphenpenalty=5000
+\tolerance=20
+\setlength{\parindent}{0em}
+\setlength\parskip{0.5em}
+\allowdisplaybreaks
+\linespread{0.9}
+
+% theorem
+% latex theorem
+% definition style
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{question}{Question}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{exercise*}{Exercise}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{problem}{Problem}
+% remark style
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\newtheorem*{claim}{Claim}
+
+
+% paragraph indent
+\setlength{\parindent}{0em}
+\setlength\parskip{0.5em}
+
+\newcommand\Code{MAT4220 FA22}
+\newcommand\Ass{HW03}
+\newcommand\name{Haoran Sun}
+\newcommand\mail{haoransun@link.cuhk.edu.cn}
+
+\title{{\sffamily \Code \ \Ass}}
+\author{\sffamily \name \ (\href{mailto:\mail}{\mail})}
+\date{\sffamily \today}
+
+\makeatletter
+% \let\Title\@title
+\let\theauthor\@author
+\let\thedate\@date
+
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \lhead{\sffamily \Ass}
+    \rhead{\sffamily \name}
+    \rfoot{\sffamily\thepage}
+
+    % # 页脚自定义
+    \fancyfoot[L]{
+        \begin{minipage}[c]{0.06\textwidth}
+            \includegraphics[height=7.5mm]{logo2.png}
+        \end{minipage}
+    }
+}
+\fancypagestyle{title}{%
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    % \lhead{\Title}
+    % \rhead{\theauthor}
+    \rfoot{\sffamily\thepage}
+
+    % # 页脚自定义
+    \fancyfoot[L]{
+        \begin{minipage}[c]{0.06\textwidth}
+            \includegraphics[height=7.5mm]{logo2.png}
+        \end{minipage}
+    }
+}
+\fancyfootoffset[L]{0.3cm}
+
+% re-define title format
+\makeatletter
+\renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
+\begin{flushleft}
+  \textbf{\Large\@title}
+
+  \@author
+\end{flushleft}\egroup
+}
+\makeatother
+
+\pagestyle{plain}
+
+% lstlisting settings
+\lstset{
+    basicstyle=\linespread{0.7}\footnotesize,
+    breaklines=true,
+    basewidth=0.5em
+}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{title}
+% \begin{multicols*}{2}
+
+% \begin{remark}
+%     $V_\epsilon(x)$ is used to denote a $\epsilon$-neighborhood
+%     \begin{align*}
+%         V_\epsilon(x) = B_\epsilon(x)\setminus\{x\}
+%     \end{align*}
+% \end{remark}
+
+\begin{problem}[P52 Q3]
+Using the formula
+\begin{align*}
+    u(x,t) &= \Phi\star\phi(x) = \frac{1}{\sqrt{4\pi kt}}\int_\R
+    e^{-\frac{(x-y)^2}{4kt}} e^{3y}\d y\\
+    &= \frac{1}{\sqrt{4\pi kt}}\int_\R e^{-\frac{(y-x-6kt)^2}{4kt}}
+    e^{\frac{6kt(x+6kt)}{4kt}}\d y\\
+    &= e^{3x+9kt}
+\end{align*}
+\end{problem}
+
+
+\begin{problem}[P53 Q14]
+Suppose $1\neq 4kta$, we have
+\begin{align}
+    |u(x,t)| &= |\Phi\star\phi(x)|\leq |\Phi\star Ce^{ax^2}|\\
+    &= \frac{1}{\sqrt{4\pi kt}}\int_\R
+    \exp\left[
+        -\frac{(1-4kta)(y-\frac{x}{1-4kta})^2}{4kt}
+    \right]
+    \exp\frac{ax^2}{4kta - 1}\d x
+    \label{eq:q2}
+\end{align}
+For $t\in(0,1/(4ak))$, we have $1-4kat>0$, then
+\begin{align*}
+    |u(x,t)| \leq \frac{1}{\sqrt{1-4kat}}\exp\frac{ax^2}{4kta - 1}\d x
+\end{align*}
+This upper bound makes sense $\forall x\in\Omega$, which means
+$u(x,t)$ is meaningful.
+
+However, when $t\geq 1/(4kat)$, $u(x,t)$ may not make any sense.
+For example, let $\phi(x)=Ce^{ax^2}\leq Ce^{ax^2}$, according to equation \ref{eq:q2},
+we can see that $u(x,t)=\infty$ when $t>1/(4ak)$,
+a $e^{ky^2}$ ($k>0$) term appears in the integral term, which means
+the integral not exists (goes to infinity).
+\end{problem}
+
+
+\begin{problem}[P60 Q3]
+Define
+\begin{align*}
+    \tilde{\phi}(x) &= \phi(|x|)
+\end{align*}
+Then 
+\begin{align*}
+    \tilde{w}(x,t) &= \frac{1}{\sqrt{4\pi kt}}\int_\R
+    \tilde{\phi}(y)e^{-\frac{(x-y)^2}{4kt}}
+    =\frac{1}{\sqrt{4\pi kt}}\int_0^\infty\left[
+        e^{-\frac{(x+y)^2}{4kt}}
+        +e^{-\frac{(x-y)^2}{4kt}}
+    \right]\phi(y) \d y
+\end{align*}
+\end{problem}
+
+
+\begin{problem}[P66 Q3]
+Perform the odd extension to both
+$\phi(x)$ and $\psi(x)$ to $\tilde{\phi}(x)$
+and $\tilde{\psi}(x)$, then we get
+\begin{align*}
+    u(x,t) = \frac{1}{2}[
+        \tilde{\phi}(x-ct)
+        + \tilde{\phi}(x+ct)
+    ] + \frac{1}{2c}
+    \int_{x-ct}^{x+ct}\tilde{\psi}(s)\d s
+\end{align*}
+Plugin $\phi(x)=f(x)$, $\psi(x)=cf'(x)$,
+then $\forall x\geq 0$, we have two cases
+\begin{enumerate}
+    \item $x> ct\geq 0$, we get
+    \begin{align*}
+        u(x,t) &= \frac{1}{2}[
+            f(x-ct) + f(x+ct)
+        ] + \frac{1}{2c}
+        \int_{x-ct}^{x+ct}cf'(s)\d s = 
+        f(x+ct)
+    \end{align*}
+
+    \item $0\leq x\leq ct$, we get
+    \begin{align*}
+        u(x,t) 
+        &= \frac{1}{2}[
+            -f(ct-x) + f(x+ct)
+        ] + \frac{1}{2c}\left[
+            \int_{x-ct}^0-cf'(-s)\d s
+            + \int_0^{x+ct}cf'(s)\d s
+        \right]\\
+        &= \frac{1}{2c}[
+            -f(ct-x) + f(x+ct)
+        ] + \frac{1}{2}\left[
+            -cf(ct-x) + cf(x+ct)
+        \right]\\
+        &= f(x+ct) - f(ct-x)
+    \end{align*}
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}[P67 Q10]
+Perform odd extension of $\phi$ and $\psi$ on $(0, \pi)$
+and perform even extension on whole $\R$, we get
+\begin{align*}
+    \tilde{\phi}(x) &= \cos x,\ \tilde{\psi}(x) = 0
+\end{align*}
+Then the solution of this wave equation is
+\begin{align*}
+    u(x,t) &=
+    \frac{1}{2}(\cos (x-ct) + \cos (x+ct)) 
+    = \cos x\cos ct = \cos x\cos 3t
+\end{align*}
+using the fact that $c=3$.
+\end{problem}
+
+
+\begin{problem}[P79 Q2]
+Using the formula that
+\begin{align*}
+    u(x,t) &= \frac{1}{2}[\phi(x-ct)+\phi(x+ct)]
+    +\frac{1}{2c}\int_{x-ct}^{x-ct}\psi(s)\d s
+    +\int_0^t\int_{x-c(t-s)}^{x+c(t-s)} f(y, s)\d y \d s
+\end{align*}
+we have
+\begin{align*}
+    u(x, t)&= \frac{1}{2c}\int_0^t\int_{x-c(t-s)}^{x+c(t-s)} e^{ay}\d y\d s\\
+    &= \frac{1}{2ac}\int_0^t(
+        e^{ax+ac(t-s)} - e^{ax-ac(t-s)}
+    )\d s\\
+    &= \frac{1}{2a^2c^2}(e^{ax+act}+e^{ax-act} - 2e^{ax})\\
+    &= \frac{1}{2a^2c^2}e^{ax}(e^{act} + e^{-act} - 2)
+\end{align*}
+\end{problem}
+
+
+
+\begin{problem}[P79 Q14]
+Define a new function $v(x,t) = u(x,t) - xk(t)$, then we have
+\begin{align*}
+    v_{tt} - c^2v_{xx} &= f(x, t) = - xk''(t)\\
+    v(x, 0) &= \phi(x) = -xk(0)\\
+    v_t(x,0) &= \psi(x) = -xk'(0)\\
+    v_x(0, t) &= 0\text{\ N.B.C}
+\end{align*}
+on $x\in (0, \infty)$.
+Then we can perform even extension on $\phi$, $\psi$ and $f$.
+Applying the formula
+\begin{align*}
+    \tilde{u}(x, t) &= {\color{red} \frac{1}{2}[\tilde{\phi}(x+ct) + \tilde{\phi}(x-ct)]}
+    + {\color{blue} \frac{1}{2c}\int_{x-ct}^{x+ct} \psi(s)\d s}
+    + {\color{orange} \frac{1}{2c}\int_0^t\d s \int_{x-c(t-s)}^{x+c(t-s)}\d y f(y, s)}
+\end{align*}
+When $0\leq ct\leq x$, the three parts red $r$, blud $b$, and orange $o$ equals to
+\begin{align*}
+    r &= -xk(0)\\
+    b &= -xtk'(0)\\
+    o &= -xk(t) + xk(0) + txk'(0)
+\end{align*}
+Then $v(x, t) = -xk(t)$, which means $u(x, t) = 0$ when $0\leq ct\leq x$.
+
+When $ct>x\geq 0$, the red part $r$ equals to
+\begin{align*}
+    r = \frac{1}{2}[-(x+ct)k(0) - (ct-x)k(0)] = -ctk(0)
+\end{align*}
+The blue part $b$ equals to
+\begin{align*}
+    b &= \frac{1}{2c}\int_0^{x+ct}-k'(0)s \d s + \frac{1}{2c}\int_{x-ct}^0 k'(0)s \d s = -\frac{1}{2c}
+    (x^2+c^2t^2)k'(0)
+\end{align*}
+The orange part $o$ equals to
+\begin{align*}
+    o &= \left(
+        \int_0^{t-x/c} + \int_{t-x/c}^t
+    \right)\d s \int_{x-c(t-s)}^{x+c(t-s)}\d y f(y, s)\\
+    &= -\frac{1}{2c}\int_0^{t-x/c}\d s [x^2+c^2(t-s)^2]k''(s) + \int_{t-x/c}^t x(s-t)k''(s)\d s\\
+    &= -\frac{1}{2c}x^2[k'(t-x/c) - k'(0)] - \frac{c}{2}(s-t)^2k'(s)|_0^{t-x/c}
+    + c(s-t)k(s)|_0^{t-x/c} - c\int_0^{t-x/c}k(s)\d s \\
+    &+\ x(s-t)k'(s)|_{t-x/c}^t - xk(s)|_{t-x/c}^t\\
+    &= \frac{1}{c}x^2k'(t-x/c) - xk(t) + xk(t-x/c) - \frac{1}{2c}x^2k'(t-x/c) + \frac{1}{2c}x^2k'(0)\\
+    &-\ \frac{1}{2c}x^2k'(t-x/c) + \frac{c}{2}t^2k'(0) - xk(t-x/c) + ctk(0) 
+    - c\int_0^{t-x/c}k(s)\d s\\
+    &= -xk(t) + \frac{1}{2c}x^2k'(0) + \frac{c}{2}t^2k'(0) + ctk(0) - c\int_0^{t-x/c}k(s)\d s
+\end{align*}
+Therefore we have
+\begin{align*}
+    v(x, t)&= r + b + o \\
+    & = -ctk(0)
+    -\frac{1}{2c}(x^2+c^2t^2)k'(0)
+    -xk(t) + \frac{1}{2c}x^2k'(0) + \frac{c}{2}t^2k'(0) + ctk(0) - c\int_0^{t-x/c}k(s)\d s\\
+    &= -xk(t) - c\int_0^{t-x/c}k(s)\d s\\
+    \Rightarrow u(x, t) &= v(x, t) + xk(t) = -c\int_{0}^{t-x/c} k(s)\d s
+\end{align*}
+for $ct>x>0$.
+
+
+\end{problem}
+
+
+% \end{multicols*}
+\end{document}
+
