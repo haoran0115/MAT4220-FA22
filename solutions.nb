@@ -1,0 +1,88 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2339,         80]
+NotebookOptionsPosition[      1861,         63]
+NotebookOutlinePosition[      2261,         79]
+CellTagsIndexPosition[      2218,         76]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"an", "=", 
+  RowBox[{
+   RowBox[{"2", "/", "l"}], "*", 
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", "^", "2"}], 
+      RowBox[{"Cos", "[", 
+       RowBox[{"n", "*", "pi", "*", 
+        RowBox[{"x", "/", "l"}]}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "l"}], "}"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.8751566541523285`*^9, 3.8751567363963084`*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"c2ab48f2-dc3e-49e5-9d2d-35af7e1f99cb"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"2", " ", 
+   SuperscriptBox["l", "2"], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"2", " ", "n", " ", "pi", " ", 
+      RowBox[{"Cos", "[", 
+       RowBox[{"n", " ", "pi"}], "]"}]}], "+", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "2"}], "+", 
+        RowBox[{
+         SuperscriptBox["n", "2"], " ", 
+         SuperscriptBox["pi", "2"]}]}], ")"}], " ", 
+      RowBox[{"Sin", "[", 
+       RowBox[{"n", " ", "pi"}], "]"}]}]}], ")"}]}], 
+  RowBox[{
+   SuperscriptBox["n", "3"], " ", 
+   SuperscriptBox["pi", "3"]}]]], "Output",
+ CellChangeTimes->{{3.875156694293141*^9, 3.87515673688144*^9}},
+ CellLabel->"Out[5]=",ExpressionUUID->"9b189de1-adeb-4d22-a7ff-33c5735eb099"]
+}, Open  ]]
+},
+WindowSize->{760, 833},
+WindowMargins->{{374, Automatic}, {Automatic, 26}},
+FrontEndVersion->"12.1 for Microsoft Windows (64-bit) (March 14, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"7eb408ba-0ef0-48fd-8e0b-b9f6a197c501"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 520, 14, 35, "Input",ExpressionUUID->"c2ab48f2-dc3e-49e5-9d2d-35af7e1f99cb"],
+Cell[1103, 38, 742, 22, 62, "Output",ExpressionUUID->"9b189de1-adeb-4d22-a7ff-33c5735eb099"]
+}, Open  ]]
+}
+]
+*)
+
