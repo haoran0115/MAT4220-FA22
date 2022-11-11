@@ -1,0 +1,384 @@
+\documentclass[twoside,11pt]{article}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{sectsty}
+\usepackage{mathrsfs} % mathscr
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{listings}
+% \usepackage{amsart}
+
+% lmodern
+\usepackage{lmodern}
+
+% change mathcal shape
+\usepackage[mathcal]{eucal}
+
+% allow H option of figure
+\usepackage{float}
+
+% define math operators
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\X}{\mathbb{Y}}
+\renewcommand{\L}{\mathcal{L}}
+% \renewcommand{\d}{\mathrm{d}}
+\renewcommand*\d{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\renewcommand{\mod}[1]{\ (\mathrm{mod}\ #1)}
+
+% section font style
+\sectionfont{\sffamily\Large}
+\subsectionfont{\sffamily\normalsize}
+\subsubsectionfont{\bf}
+
+% line spreading and break
+\hyphenpenalty=5000
+\tolerance=20
+\setlength{\parindent}{0em}
+\setlength\parskip{0.5em}
+\allowdisplaybreaks
+\linespread{0.9}
+
+% enumerate settings
+% no break before enumerate
+\setlist[enumerate]{itemsep=2pt}
+
+% theorem
+% latex theorem
+% definition style
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{question}{Question}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{exercise*}{Exercise}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{problem}{Problem}
+% remark style
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\newtheorem*{claim}{Claim}
+
+
+% paragraph indent
+\setlength{\parindent}{0em}
+\setlength\parskip{0.5em}
+
+\newcommand\Code{MAT4220 FA22}
+\newcommand\Ass{HW05}
+\newcommand\name{Haoran Sun}
+\newcommand\mail{haoransun@link.cuhk.edu.cn}
+
+\title{{\sffamily \Code \ \Ass}}
+\author{\sffamily \name \ (\href{mailto:\mail}{\mail})}
+\date{\sffamily \today}
+
+\makeatletter
+% \let\Title\@title
+\let\theauthor\@author
+\let\thedate\@date
+
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \lhead{\sffamily \Ass}
+    \rhead{\sffamily \name}
+    \rfoot{\sffamily\thepage}
+
+    % # 页脚自定义
+    \fancyfoot[L]{
+        \begin{minipage}[c]{0.06\textwidth}
+            \includegraphics[height=7.5mm]{logo2.png}
+        \end{minipage}
+    }
+}
+\fancypagestyle{title}{%
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    % \lhead{\Title}
+    % \rhead{\theauthor}
+    \rfoot{\sffamily\thepage}
+
+    % # 页脚自定义
+    \fancyfoot[L]{
+        \begin{minipage}[c]{0.06\textwidth}
+            \includegraphics[height=7.5mm]{logo2.png}
+        \end{minipage}
+    }
+}
+\fancyfootoffset[L]{0.3cm}
+
+% re-define title format
+\makeatletter
+\renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
+\begin{flushleft}
+  \textbf{\Large\@title}
+
+  \@author
+\end{flushleft}\egroup
+}
+\makeatother
+
+\pagestyle{plain}
+
+% lstlisting settings
+\lstset{
+    basicstyle=\linespread{0.7}\footnotesize,
+    breaklines=true,
+    basewidth=0.5em
+}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{title}
+% \begin{multicols*}{2}
+
+% \begin{remark}
+%     $V_\epsilon(x)$ is used to denote a $\epsilon$-neighborhood
+%     \begin{align*}
+%         V_\epsilon(x) = B_\epsilon(x)\setminus\{x\}
+%     \end{align*}
+% \end{remark}
+
+
+\begin{problem}[P117 Q4]\
+\begin{enumerate}[label=(\alph*)]
+\item Note that the formula for cosine coefficients is
+\begin{align*}
+    A_n &= \frac{1}{l}\int_{-l}^l \phi(x)\cos\frac{n\pi x}{l}\d x
+\end{align*}
+Since $\phi(x)$ is odd and $\cos\frac{n\pi x}{l}$ is even, we have
+$\phi(x)\cos\frac{n\pi x}{l}$ an odd function.
+Hence $A_n=0$.
+
+\item Note that the formula for sine coefficients is
+\begin{align*}
+    B_n &= \frac{1}{l}\int_{-l}^l \phi(x)\sin\frac{n\pi x}{l}\d x
+\end{align*}
+Since $\phi(x)$ even and $\sin\frac{n\pi x}{l}$ odd, we have
+$\phi(x)\sin\frac{n\pi x}{l}$ odd.
+Hence $B_n=0$.
+
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}[P117 Q8]\
+\begin{enumerate}[label=(\alph*)]
+\item Suppose $f$ is even and differentiable on $(-l, l)$.
+Then 
+\begin{align*}
+    f'(x_0) &= 
+    \lim_{h\rightarrow 0}\frac{f(x_0+h) - f(x_0)}{h}
+    = \lim_{h\rightarrow 0}-\frac{f(-x_0) - f(-x_0 - h)}{h}
+    = -f'(-x_0)
+\end{align*}
+Then $f'$ is odd.
+
+Following similar steps, we can also prove that $f'$ is even given that $f$ is odd.
+
+\item Suppose $f$ even and integrable on $(-l, l)$.
+Then
+\begin{align*}
+    F(x) &= \int_0^x f(t)\d t
+    = \int_0^{-x} -f(-t)\d (-t)
+    = -F(-x)
+\end{align*}
+Then $F$ is odd.
+
+Following similar steps, we can also prove that $F$ is even given that $f$ is odd.
+
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}[P117 Q10]\
+\begin{enumerate}[label=(\alph*)]
+\item $\lim_{x\rightarrow 0^+} \phi(x) = 0$
+
+\item $\lim_{x\rightarrow 0^+} \phi(x) = 0$ and $\lim_{x\rightarrow 0^+}\phi'(x)$ exists.
+
+\item $\lim_{x\rightarrow 0^+} \phi(x)$ exists.
+
+\item $\lim_{x\rightarrow 0^+} \phi(x)$ exists and $\lim_{x\rightarrow 0^+}\phi'(x)=0$.
+
+
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}[P123 Q10]\
+\begin{enumerate}[label=(\alph*)]
+\item \begin{proof}
+Prove by induction.
+Easy to prove that $(Z_1, Z_2)=0$.
+Suppose $Z_1,\dots,Z_k$ are orthogonal to each other.
+Then 
+\begin{align*}
+    Y_{k+1} &= X_{k+1} - \sum_{i=1}^k (Z_i, X_{K+1})Z_i\\
+    (Z_j, Y_{k+1}) &= (Z_j, Y_{k+1}) - \sum_{k=1}^k (Z_i, X_{k+1})\delta_{ij}
+    = (Z_j, Y_{k+1}) - (Z_j, y_{k+1}) = 0
+\end{align*}
+Then $Y_{k+1}$ is orthogonal to $Z_1,\dots,Z_k$.
+Suppose $\|Y_{k+1}\|\neq 0$, then $Z_{k+1}$ exists and
+$Z_1,\dots,Z_{k+1}$ orthogonal to each other.
+\end{proof}
+
+\item Let $f_1(x) = \cos x + \cos 2x$ and $f_2(x) = 3\cos x - 4\cos 2x$, then
+\begin{align*}
+    \|f_1\|^2 &= 
+    \int_0^\pi \cos^2 x + 2\cos x\cos 2x + \cos^2 2x\d x
+    = \pi\\
+    \Rightarrow z_1 &= \frac{1}{\sqrt{\pi}}(\cos x + \cos 2x)\\
+    y_2 &= f_2 - \frac{1}{\sqrt{\pi}}\int_0^\pi 
+    (\cos x + \cos 2x)(3\cos x - 4\cos 2x)\d x
+    = \frac{7}{2}(\cos x - \cos 2x)\\
+    \Rightarrow z_2 &= \frac{1}{\sqrt{\pi}}(\cos x - \cos 2x)
+\end{align*}
+
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}[P134 Q1]
+\begin{remark}
+$\forall x\in(-1, 1)$
+\begin{align*}
+    \lim_{n\rightarrow \infty} S_n = 
+    \lim_{n\rightarrow \infty} \sum_{i=0}^n (-1)^n x^{2n} = 
+    \frac{1}{1+x^2}
+\end{align*}
+\end{remark}
+\begin{enumerate}[label=(\alph*)]
+\item Note that
+\begin{align*}
+    |S_n - S| &= \left|\frac{- (-x^2)^n}{1+x^2}\right|
+    = \frac{x^{2n}}{1 + x^2}
+\end{align*}
+Easy to show that for each $x\in (-1, 1)$, $\forall\epsilon>0$, we can choose 
+$N\in\N$ where $x^{2N}<\epsilon$
+s.t. $|S_n-S|<\epsilon$ $\forall n>N$.
+Then $S_n$ converges pointwisely.
+
+\item $S_n$ does not converges uniformly since there always $\exists\epsilon=1/8>0$,
+s.t. $\forall n>N\in\N$, we can always find $x_0 = (1/2)^{1/2n}$ where
+\begin{align*}
+    |S_n(x_0) - S(x_0)| &=
+    \frac{x^{2n}}{1 + x^2} > \frac{1}{2}x^{2n} 
+    = \frac{1}{4} > \epsilon = \frac{1}{8}
+\end{align*}
+
+\item $S_n$ converges in the $L^2$ sense since $\forall\epsilon>0$, we can choose
+$N\in\N$ where $N>1/\epsilon$ s.t. 
+\begin{align*}
+    \left|\int_{-1}^1 \left(
+        \frac{x^{2n}}{1+x^2}
+    \right)^2\d x\right|
+    &\leq \int_{-1}^1 \frac{1}{4}x^{2n} \d x
+    = \frac{1}{2}\frac{1}{2n+1} < \frac{\epsilon }{2+\epsilon } < \epsilon
+\end{align*}
+
+
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}[P134 Q3]\
+\begin{enumerate}[label=(\alph*)]
+\item $\forall x\notin [1/2-1/n, 1/2)\cup(1/2, 1/2+1/n]$, we have $f_n(x)=0$.
+Forall other $x$, $\forall \epsilon>0$, $\exists N\in\N$ with $1/N<|x-\frac{1}{2}|$ 
+s.t. $\forall n>N$, we have $f_n(x) = 0$.
+Then $f_n\rightarrow 0$ pointwisely.
+
+\item $\exists\epsilon=1$, $\exists N_1\in\N$ s.t. $|\gamma_n|>\epsilon=1$ $\forall n>N_1$
+since $\gamma_n\rightarrow\infty$.
+Then $\forall n > N_1$, $\exists x_n = x+1/2n$ s.t. $|f_n(x)|=|\gamma_n|>\epsilon=1$.
+Then $f_n\rightarrow 0$ not uniformly.
+
+\item Easy to show that
+\begin{align*}
+    \|f_n\|^2 &= \frac{2}{n}\cdot n^{2/3} = 2n^{-1/3}\rightarrow 0
+    \text{ as } n\rightarrow \infty
+\end{align*}
+$f_n\rightarrow 0$ in $L^2$ sense.
+
+\item Easy to show that
+\begin{align*}
+    \|f_n\|^2 &= \frac{2}{n}n^2 = 2n \rightarrow \infty
+\end{align*}
+$f_n\rightarrow 0$ not in $L^2$ sense.
+
+
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}[P134 Q7]\
+\begin{enumerate}[label=(\alph*)]
+\item We can verify that
+\begin{align*}
+    c_0 &= \frac{1}{2}\int_{-1}^1\phi(x)\d x = 0\\
+    c_n &= \frac{1}{2}\int_{-1}^1e^{-in\pi x}\phi(x)
+    = \frac{1}{2}\left[
+        \int_{-1}^0 e^{-in\pi x}(-1-x)\d x
+        + \int_0^1 e^{-in\pi x}(1-x)\d x
+    \right] 
+    = \frac{1}{in\pi}
+\end{align*}
+
+\item First non-zero term (traditional sine series) is
+\begin{align*}
+    \frac{2}{\pi}\sin  \pi x,\
+    \frac{1}{\pi}\sin 2\pi x,\
+    \frac{2}{3\pi}\sin 3\pi x
+\end{align*}
+
+\item Note that
+\begin{align*}
+    \|\phi\|^2 &= \int_{-1}^1\phi(x)^2\d x = \frac{2}{3}\\
+    \|S_N^2\| &= \sum_{n=-N}^N |c_n|^2 \int_{-1}^1 1\d x
+    = \frac{4}{\pi^2}\sum_{n=1}^N \frac{1}{n^2} \rightarrow \frac{2}{3}
+\end{align*}
+Then $\|S_n\|$ not converge to $\|\phi\|$, then
+it converges in the $L^2$ sense.
+
+\item It converges pointwisely.
+
+\item It does not converges uniformly.
+
+
+\end{enumerate}
+\end{problem}
+
+
+
+
+
+
+
+% \end{multicols*}
+\end{document}
+

@@ -1,0 +1,411 @@
+\documentclass[twoside,11pt]{article}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{sectsty}
+\usepackage{mathrsfs} % mathscr
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{soul}
+\usepackage{braket}
+\usepackage{esint}
+% \usepackage{amsart}
+
+% lmodern
+\usepackage{lmodern}
+
+% change mathcal shape
+\usepackage[mathcal]{eucal}
+
+% allow H option of figure
+\usepackage{float}
+
+% define math operators
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\X}{\mathbb{Y}}
+\renewcommand{\L}{\mathcal{L}}
+% \renewcommand{\d}{\mathrm{d}}
+\renewcommand*\d{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\renewcommand{\mod}[1]{\ (\mathrm{mod}\ #1)}
+
+% section font style
+\sectionfont{\sffamily\Large}
+\subsectionfont{\sffamily\normalsize}
+\subsubsectionfont{\bf}
+
+% line spreading and break
+\hyphenpenalty=5000
+\tolerance=20
+\setlength{\parindent}{0em}
+\setlength\parskip{0.5em}
+\allowdisplaybreaks
+\linespread{0.9}
+
+% enumerate settings
+% no break before enumerate
+\setlist[enumerate]{itemsep=2pt,topsep=2pt}
+
+% theorem
+% latex theorem
+% definition style
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{question}{Question}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{exercise*}{Exercise}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{problem}{Problem}
+% remark style
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\newtheorem*{claim}{Claim}
+
+
+% paragraph indent
+\setlength{\parindent}{0em}
+\setlength\parskip{0.5em}
+
+\newcommand\Code{MAT4220 FA22}
+\newcommand\Ass{HW06}
+\newcommand\name{Haoran Sun}
+\newcommand\mail{haoransun@link.cuhk.edu.cn}
+
+\title{{\sffamily \Code \ \Ass}}
+\author{\sffamily \name \ (\href{mailto:\mail}{\mail})}
+\date{\sffamily \today}
+
+\makeatletter
+% \let\Title\@title
+\let\theauthor\@author
+\let\thedate\@date
+
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \lhead{\sffamily \Ass}
+    \rhead{\sffamily \name}
+    \rfoot{\sffamily\thepage}
+
+    % # 页脚自定义
+    \fancyfoot[L]{
+        \begin{minipage}[c]{0.06\textwidth}
+            \includegraphics[height=7.5mm]{logo2.png}
+        \end{minipage}
+    }
+}
+\fancypagestyle{title}{%
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    % \lhead{\Title}
+    % \rhead{\theauthor}
+    \rfoot{\sffamily\thepage}
+
+    % # 页脚自定义
+    \fancyfoot[L]{
+        \begin{minipage}[c]{0.06\textwidth}
+            \includegraphics[height=7.5mm]{logo2.png}
+        \end{minipage}
+    }
+}
+\fancyfootoffset[L]{0.3cm}
+
+% re-define title format
+\makeatletter
+\renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
+\begin{flushleft}
+  \textbf{\Large\@title}
+
+  \@author
+\end{flushleft}\egroup
+}
+\makeatother
+
+\pagestyle{plain}
+
+% lstlisting settings
+\lstset{
+    basicstyle=\linespread{0.7}\footnotesize,
+    breaklines=true,
+    basewidth=0.5em
+}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{title}
+% \begin{multicols*}{2}
+
+% \begin{remark}
+%     $V_\epsilon(x)$ is used to denote a $\epsilon$-neighborhood
+%     \begin{align*}
+%         V_\epsilon(x) = B_\epsilon(x)\setminus\{x\}
+%     \end{align*}
+% \end{remark}
+
+
+\begin{problem}[P135 Q15]\
+\begin{enumerate}[label=(\alph*)]
+\item Note that $\|\cos(n+1/2)x\|^2=\pi/2$ on $(0, \pi)$, 
+then we have
+\begin{align*}
+    B_n &= \frac{\pi}{2}\int_0^\pi\cos[(n+1/2)x]\d x = \frac{4}{(2n+1)\pi}(-1)^n
+\end{align*}
+
+\item The series converges for all $x$ in $(-2\pi, 2\pi)$.
+\begin{align*}
+    S(x) &= \begin{cases}
+        1 & x\in(-\pi, \pi)\\
+        -1 & x\in(-2\pi, -\pi)\cup (\pi, 2\pi)\\
+        0 & x=\pm\pi
+    \end{cases}
+\end{align*}
+
+\item Using Parseval's equality, we have
+\begin{align*}
+    \sum_{n=0} Bn^2\|X_n(x)\|^2 &= \|\phi(x)\|^2\\
+    \Rightarrow \sum_{n=0} \frac{16}{\pi}\frac{1}{(2n+1)^2}\frac{\pi}{2} &= \pi\\
+    \sum_{n=0} \frac{1}{(2n+1)^2} &= \frac{\pi}{8}
+\end{align*}
+
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}[P145 Q4]\
+\begin{enumerate}[label=(\alph*)]
+\item Let $T(t)X(t)$ satisfies the boundary condition, then
+\begin{align*}
+    \frac{T'(t)}{kT} &= \frac{X''(x)}{X(x)} = -\lambda
+\end{align*}
+Assume that $\lambda\geq 0$.
+If $\lambda=0$, we have $X_0(x) = A + Bx$.
+Else, let $\beta^2=\lambda> 0$, then we have the following form of 
+the eigenfunctions.
+\begin{align*}
+    X(x) &= C\cos\beta x + D\sin\beta x
+\end{align*}
+Applying the boundary condition, we can solve that
+\begin{align*}
+    \tan\frac{\beta_n l}{2} &= \frac{\beta_n l}{2}
+\end{align*}
+Hence $u(x, t)$ could be written in the form of
+\begin{align*}
+    u(x, t) &= 
+    A + Bx + 
+    \sum_{n=1}^\infty e^{-\beta_n^2kt}(c_n\cos\beta_nx + d_n\sin\beta_n x)
+\end{align*}
+
+\item Suppose we can take the limit term by term, hence
+\begin{align*}
+    \lim_{t\rightarrow \infty}
+    \sum_{n=1}^\infty e^{-\beta_n^2kt}(c_n\cos\beta_nx + d_n\sin\beta_n x)
+    &= \sum_{n=1}^\infty
+    \lim_{t\rightarrow \infty}
+    e^{-\beta_n^2kt}(c_n\cos\beta_nx + d_n\sin\beta_n x)\\
+    &= \sum_{n=1}^\infty 0 = 0
+\end{align*}
+Consequently
+\begin{align*}
+    \lim_{t\rightarrow \infty} u(x,t) = A + Bx
+\end{align*}
+
+\item Suppose $\lambda=-\beta^2<0$.
+Note that
+\begin{align*}
+    \int_0^l u_x(x, t)\d x &= \left .u(x,t)u_x(x, t)\right |_{x=0}^{x=l}
+    - \int_0^l u(x, t)u_{xx}(x, t)\d x \geq 0
+    \Rightarrow \int_0^l u(x, t)u_{xx}(x, t)\d x \leq 0
+\end{align*}
+However
+\begin{align*}
+    \int_0^l u(x, t)u_{xx}(x, t)\d x &= T(t)^2\int_0^l X(x)X''(x)\d x
+    = T(t)^2\beta^2 \int_0^l X^2(x)\d x \geq 0 
+\end{align*}
+where the contradiction occurs that $\lambda = 0$ in this case.
+Hence $\lambda>0$.
+
+\item Since $\braket{1,1}=l$, $\braket{x,x}=l^3/3$, then
+\begin{align*}
+    A &= \frac{1}{l}\int_0^l\phi(x)\d x \quad
+    B = \frac{3}{l^3}\int_0^l x\phi(x)\d x
+\end{align*}
+
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}[P145 Q6]
+Suppose $u$ is in the form of 
+\begin{align*}
+    u(x,t) &= \frac{1}{2}A_0 + 
+    \sum_{n=1}^\infty A_ne^{-\frac{n^2\pi^2}{l^2}kt}
+    \cos\frac{n\pi x}{l}
+\end{align*}
+where $u(x,0)=\phi(x)$ continuous on $[0, l]$.
+\begin{claim}
+$A_n$ bounded.
+\end{claim}
+\begin{proof}
+Since $\phi$ is continuous on $[0, l]$, then $\|\phi\|$ bounded, hence
+\begin{align*}
+    |\braket{\phi, \cos\frac{n\pi}{l}x}| &\leq
+    \|\phi\| \|\cos\frac{n\pi}{l}\| < \infty
+    \Rightarrow
+    A_n = \frac{2}{l}\braket{\cos\frac{n\pi}{l},\phi} < M\qedhere
+\end{align*}
+\end{proof}
+
+\begin{claim}
+The following series converges $\forall t>0$
+\begin{align*}
+    \sum_{n=1}^\infty A_n n^k e^{-n^2t}
+\end{align*}
+\end{claim}
+\begin{proof}
+Note that $\forall\epsilon>0$, $\exists N\in\N$ s.t.
+$\forall m > N$ we have
+$\sum_N^\infty n^k e^{-nt} < \epsilon/M$, then
+\begin{align*}
+    \sum_{n=1}^\infty |A_n n^k e^{-n^2t}|
+    \leq M \sum_{n=1}^\infty n^k e^{-n^2 t}
+    < M\sum_{n=1}^{m-1} n^k e^{-nt} + \epsilon
+\end{align*}
+Hence the series converges.
+\end{proof}
+According to the claims, $\exists N\in\N$ s.t. 
+$\forall x $ and $\forall m>N$ we have
+\begin{align*}
+    \left|\sum_{m}^\infty
+    \frac{\d^k}{\d x^k}A_n e^{-\frac{n^2\pi^2}{l^2}kt}\cos\frac{n\pi x}{l}
+    \right| 
+    \leq 
+    M\sum_{n=m}^\infty e^{-\frac{n^2\pi^2}{l^2}kt}
+    < \epsilon
+\end{align*}
+which means the series converges uniformly with respect to $x$.
+Hence, using the theorem in the appendix,
+we have
+\begin{align*}
+    \frac{\d^k}{\d x^k}u(x, t) &= 
+    \frac{\d^k}{\d x^k}
+    \sum_{n=1}^\infty
+    A_n e^{-\frac{n^2\pi^2}{l^2}kt}\cos\frac{n\pi x}{l}
+    = 
+    \sum_{n=1}^\infty
+    \frac{\d^k}{\d x^k}
+    A_n e^{-\frac{n^2\pi^2}{l^2}kt}\cos\frac{n\pi x}{l}\\
+    &= 
+    \sum_{n=1}^\infty
+    B_n n^k e^{-\frac{n^2\pi^2}{l^2}kt}\cos\frac{n\pi x}{l} 
+\end{align*}
+exists $\forall k$ in $t>0$.
+
+\end{problem}
+
+
+\begin{problem}[P145 Q11]
+Follow the same steps when proving the uniform convergence.
+Since the $f'(x)$ piecewise continuous $f'(x)X(x)$ also piecewise continuous,
+then it is integrable and hence
+\begin{align*}
+    A_n &= -\frac{1}{n}B_n'\quad B_n = \frac{1}{n}A_n'
+\end{align*}
+Applying Bessel's inequality, we have the following series convergent
+\begin{align*}
+    \sum_{n=1}^\infty ({A_n'}^2 = {B_n'}^2) < \infty
+\end{align*}
+Therefore 
+\begin{align*}
+    \left|\sum_{n=1}^\infty A_n\cos nx + B_n\sin nx\right|
+    &\leq \sum_{n=1}^\infty |A_n\cos nx| + |B_n\sin nx|\\
+    &\leq \sum_{n-1}^\infty |A_n| + |B_n|\\
+    &= \frac{1}{n}\sum_{n-1}^\infty |A_n'| + |B_n'|\\
+    &\leq \left(\sum_{n=1}^\infty \frac{1}{n^2}\right)^{1/2}
+    \left(\sum_{n=1}^\infty |A_n'|^2 + |B_n'|^2 + 2|A_n'||B_n'|\right)^{1/2}\\
+    &\leq \left(\sum_{n=1}^\infty \frac{1}{n^2}\right)^{1/2}
+    \left(\sum_{n=1}^\infty 2(|A_n'|^2 + |B_n'|^2)\right)^{1/2}<\infty
+\end{align*}
+Hence $\forall \epsilon>0$, we can choose $N\in\N$ s.t. $\forall m > N$
+and $\forall x$ we have
+\begin{align*}
+    \left|f(x) - \sum_{n=1}^{m-1} A_n\cos nx + B_n\sin nx\right|
+    &= \left|\sum_{n=m}^\infty A_n\cos nx + B_n\sin nx\right|\\
+    &\leq M\sum_{n=m}^\infty (|A_n'|^2 + |B_n'|^2) < \epsilon
+\end{align*}
+Hence the Fourier series converges uniformly.
+\end{problem}
+
+
+
+\begin{problem}[P160 Q5]
+Note that $(x^2+y^2)/4+c$ is the solution of $\Delta u = 1$.
+Since $(x^2+y^2)/4 - 1/4$ satisfies the boundary condition, 
+according to the uniqueness, the solution is $u(x, t)=(x^2+y^2)/4 - 1/4$.
+\end{problem}
+
+
+
+\begin{problem}[P160 Q11]
+Suppose there is a solution $u$, then
+\begin{align*}
+    \iiint_D f\d x\d y\d z &= 
+    \iiint_D\nabla\cdot\nabla u\d x\d y\d z
+    = \oiint_{\partial D}\nabla u\cdot\mathbf{n}\d \sigma
+    = \oiint_{\partial D} \frac{\partial u}{\partial \mathbf{n}}\d \sigma
+    = \oiint_{\partial D} g\d \sigma
+\end{align*}
+Then if equality does not hold, there will be no solutions.
+\end{problem}
+
+
+\begin{problem}[P160 Q13]
+Let $v=u+\epsilon|\mathbf{x}|^2$.
+Suppose $v$ obtains its maximum in the interior domain of $D$, then
+$\Delta v \leq 0$.
+Note that
+\begin{align*}
+    \Delta v &= \Delta u + 4n\epsilon > 0
+\end{align*}
+where $n$ is the dimension.
+This contradicts the assumption.
+Hence $\max_D v = \max_{\partial D} v$.
+Since $D$ is bounded, we can also show that
+\begin{align*}
+    \max_D v = \max_D u\quad
+    \max_{\partial D} v = \max_{\partial D} u
+\end{align*}
+Hence $\max_{D} u = \max_{\partial D} u$.
+
+
+\end{problem}
+
+
+
+
+% \end{multicols*}
+\end{document}
+
