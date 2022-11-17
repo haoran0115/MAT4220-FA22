@@ -1,0 +1,311 @@
+\documentclass[twoside,11pt]{article}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{sectsty}
+\usepackage{mathrsfs} % mathscr
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{soul}
+\usepackage{braket}
+\usepackage{esint}
+% \usepackage{amsart}
+
+% lmodern
+\usepackage{lmodern}
+
+% change mathcal shape
+\usepackage[mathcal]{eucal}
+
+% allow H option of figure
+\usepackage{float}
+
+% define math operators
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\X}{\mathbb{Y}}
+\renewcommand{\L}{\mathcal{L}}
+% \renewcommand{\d}{\mathrm{d}}
+\renewcommand*\d{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\renewcommand{\mod}[1]{\ (\mathrm{mod}\ #1)}
+
+% section font style
+\sectionfont{\sffamily\Large}
+\subsectionfont{\sffamily\normalsize}
+\subsubsectionfont{\bf}
+
+% line spreading and break
+\hyphenpenalty=5000
+\tolerance=20
+\setlength{\parindent}{0em}
+\setlength\parskip{0.5em}
+\allowdisplaybreaks
+\linespread{0.9}
+
+% enumerate settings
+% no break before enumerate
+\setlist[enumerate]{itemsep=2pt,topsep=2pt}
+
+% theorem
+% latex theorem
+% definition style
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{question}{Question}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{exercise*}{Exercise}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{problem}{Problem}
+% remark style
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\newtheorem*{claim}{Claim}
+
+
+% paragraph indent
+\setlength{\parindent}{0em}
+\setlength\parskip{0.5em}
+
+\newcommand\Code{MAT4220 FA22}
+\newcommand\Ass{HW07}
+\newcommand\name{Haoran Sun}
+\newcommand\mail{haoransun@link.cuhk.edu.cn}
+
+\title{{\sffamily \Code \ \Ass}}
+\author{\sffamily \name \ (\href{mailto:\mail}{\mail})}
+\date{\sffamily \today}
+
+\makeatletter
+% \let\Title\@title
+\let\theauthor\@author
+\let\thedate\@date
+
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \lhead{\sffamily \Ass}
+    \rhead{\sffamily \name}
+    \rfoot{\sffamily\thepage}
+
+    % # 页脚自定义
+    \fancyfoot[L]{
+        \begin{minipage}[c]{0.06\textwidth}
+            \includegraphics[height=7.5mm]{logo2.png}
+        \end{minipage}
+    }
+}
+\fancypagestyle{title}{%
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    % \lhead{\Title}
+    % \rhead{\theauthor}
+    \rfoot{\sffamily\thepage}
+
+    % # 页脚自定义
+    \fancyfoot[L]{
+        \begin{minipage}[c]{0.06\textwidth}
+            \includegraphics[height=7.5mm]{logo2.png}
+        \end{minipage}
+    }
+}
+\fancyfootoffset[L]{0.3cm}
+
+% re-define title format
+\makeatletter
+\renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
+\begin{flushleft}
+  \textbf{\Large\@title}
+
+  \@author
+\end{flushleft}\egroup
+}
+\makeatother
+
+\pagestyle{plain}
+
+% lstlisting settings
+\lstset{
+    basicstyle=\linespread{0.7}\footnotesize,
+    breaklines=true,
+    basewidth=0.5em
+}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{title}
+% \begin{multicols*}{2}
+
+% \begin{remark}
+%     $V_\epsilon(x)$ is used to denote a $\epsilon$-neighborhood
+%     \begin{align*}
+%         V_\epsilon(x) = B_\epsilon(x)\setminus\{x\}
+%     \end{align*}
+% \end{remark}
+
+\begin{problem}[P160 Q7]
+The solution is in the form of
+\begin{align*}
+    u(r, \theta, \phi) &=
+    \frac{c_1}{r} + c_2 + \frac{1}{6}r^2
+\end{align*}
+Applying the boundary condition where $u(a, \theta, \phi) = u(b, \theta, \phi) = 0$,
+we can solve $c_1$ and $c_2$
+\begin{align*}
+    c_1 &= \frac{ab}{6}\frac{b^2-a^2}{b-a} = \frac{1}{6}ab(a+b) \quad
+    c_2 = \frac{1}{6}\frac{b^3-a^3}{b-a} = \frac{1}{6}(a^2+ab+b^2)
+\end{align*}
+\end{problem}
+
+
+\begin{problem}[P165 Q6]
+Let $X(x)Y(y)Z(z)$ be a solution, then
+\begin{align*}
+    \Delta u = 0\Rightarrow
+    \frac{X''}{X} + \frac{Y''}{Y} + \frac{Z''}{Z} = 0
+\end{align*}
+set boundary conditions
+\begin{align*}
+    u_x(0, y, z) = u_x(1, y, z) = u_y(x, 0, z) = u_y(x, 1, z)
+    = u_z(x, y, 0) = 0
+\end{align*}
+We have
+\begin{align*}
+    X_m(x) = \cos m\pi x,\ Y_n(y) = \cos n\pi y
+\end{align*}
+Hence
+\begin{align*}
+    \frac{Z''}{Z} = (m^2+n^2)\pi^2 \Rightarrow
+    Z(z) = A\cosh \sqrt{m^2+n^2}\pi z
+\end{align*}
+Let the solution be in the form
+\begin{align*}
+    u(x, y, z) &= 
+    \frac{1}{4}A_{00} + 
+    \frac{1}{2}\sum_{m=1}^\infty A_{m0}\cos m\pi x\cosh m\pi z + 
+    \frac{1}{2}\sum_{n=1}^\infty A_{0n}\cos n\pi y\cosh m\pi z\\ &+
+    \sum_{m=1}^\infty \sum_{n=1}^\infty A_{mn}\cos m\pi \cos n\pi y \cosh\sqrt{m^2+n^2}\pi z
+\end{align*}
+Hence
+\begin{align*}
+    u(x, y, 1) &= g(x, y) =
+    \sum_{mn}A_{mn}\cos m\pi \cos n\pi y \cosh\sqrt{m^2+n^2}\pi\\
+    \Rightarrow
+    A_{mn} &= \frac{4}{\cosh\sqrt{m^2+n^2}\pi}\int_0^1\int_0^1\d x \d y
+    \cos m\pi x \cos n\pi y g(x, y)
+\end{align*}
+
+\end{problem}
+
+
+\begin{problem}[P172 Q2]
+Since 
+\begin{align*}
+    u(r, \theta) &= \frac{1}{2}A_0 + \sum_{n=1}^\infty
+    r^n(A_n\cos n\theta + B_n\sin n\theta)
+\end{align*}
+we have
+\begin{align*}
+    u(a, \theta) &= \frac{1}{2}A_0 + \sum_{n=1}^\infty
+    a^n(A_n\cos n\theta + B_n\sin n\theta) = 1 + 3\sin\theta\\
+    \Rightarrow A_0 &= 2,\ A_n = 0,\ B_1 = \frac{3}{a},\ B_2 = \cdots = 0
+\end{align*}
+which means $u(r, \theta) = 1 + 3r\sin\theta / a$.
+
+\end{problem}
+
+
+
+\begin{problem}[P176 Q4]
+Let 
+\begin{align*}
+    u(r, \theta) &= \frac{1}{2}A_0 + \sum_{n=1}^\infty
+    r^{-n}(A_n\cos n\phi + B_n\sin n\phi)\\
+    A_n &= \frac{a^n}{\pi}\int_0^{2\pi}\d\phi h(\phi)\cos n\phi\\
+    B_n &= \frac{a^n}{\pi}\int_0^{2\pi}\d\phi h(\phi)\sin n\phi
+\end{align*}
+Therefore
+\begin{align*}
+    u(r, \theta) &= \frac{1}{2}\int_0^{2\pi}\d\phi\ h(\phi) + 
+    \sum_{n=1}^\infty (a/r)^{-n}\int_0^{2\pi} [h(\phi)\cos n\phi \cos n\theta
+    + h(\phi)\sin n\phi\sin n\theta]\\
+    &= \frac{1}{\pi}\int_0^{2\pi}\d \phi\ h(\phi)\left[ 
+        \frac{1}{2} + \sum_{n=1}^\infty (a/r)^{-n}(\cos n\phi\cos n\theta
+        + \sin n\phi \sin n\theta)
+    \right]\\
+    &= \frac{1}{\pi}\int_0^{2\pi}\d \phi\ h(\phi)\left[ 
+        \frac{1}{2} + \sum_{n=1}^\infty
+        (a/r)^{-n}\cos n(\phi-\theta)
+    \right]\\
+    &= \frac{1}{\pi}\int_0^{2\pi}\d \phi\ h(\phi)\left[ 
+        \frac{1}{2} + \frac{1}{2}\sum_{n=1}^\infty
+        (a/r)^{-n} e^{in\varphi} + 
+        (a/r)^{-n} e^{-in\varphi}
+    \right]\\
+    &= \frac{1}{2\pi}\int_0^{2\pi}\d \phi\ h(\phi)\left[ 
+        1 + \frac{ae^{i\varphi}}{r-ae^{i\varphi}} 
+        + \frac{ae^{-i\varphi}}{r-ae^{-i\varphi}}
+    \right]\\
+    &= \frac{1}{2\pi}\int_0^{2\pi}\d \phi\ h(\phi) \frac{r^2-a^2}{r^2+a^2-2ar\cos(\theta-\phi)}
+\end{align*}
+
+\end{problem}
+
+
+\begin{problem}[P176 Q13]
+In this case, the eigenfunction $\Theta(\theta)$ and $R(r)$ have the form
+\begin{align*}
+    \Theta_n(\theta) &= \sin\frac{n\pi(\theta-\alpha)}{\beta - \alpha}\quad
+    R_n(r) = A_n r^{\frac{n\pi}{\beta-\alpha}} + B_n r^{-\frac{n\pi}{\beta-\alpha}}
+\end{align*}
+Therefore
+\begin{align*}
+    u(r, \theta) &=
+    \sum_{n=1}^\infty \left(
+        A_n r^{\frac{n\pi}{\beta-\alpha}} + B_n r^{-\frac{n\pi}{\beta-\alpha}}
+    \right)\sin\frac{n\pi(\theta-\alpha)}{\beta-\alpha}
+    \\
+    A_n &= \frac{2}{\beta-\alpha}\frac{1}{a^{\frac{2n\pi}{\beta-\alpha}}
+    - b^{\frac{2n\pi}{\beta-\alpha}}}
+    \int_\alpha^\beta \d\theta\sin\frac{n\pi(\theta-\alpha)}{\beta-\alpha}[
+        a^{\frac{n\pi (\theta-\alpha)}{\beta-\alpha}}g(\theta) - 
+        b^{\frac{n\pi (\theta-\alpha)}{\beta-\alpha}}h(\theta)
+    ]
+    \\
+    B_n &= \frac{2}{\beta-\alpha}\frac{1}{a^{-\frac{2n\pi}{\beta-\alpha}}
+    - b^{-\frac{2n\pi}{\beta-\alpha}}}
+    \int_\alpha^\beta \d\theta\sin\frac{n\pi(\theta-\alpha)}{\beta-\alpha}[
+        a^{-\frac{n\pi (\theta-\alpha)}{\beta-\alpha}}g(\theta) - 
+        b^{-\frac{n\pi (\theta-\alpha)}{\beta-\alpha}}h(\theta)
+    ]
+\end{align*}
+\end{problem}
+
+
+
+% \end{multicols*}
+\end{document}
+
