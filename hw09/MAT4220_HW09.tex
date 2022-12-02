@@ -91,7 +91,7 @@
 \setlength\parskip{0.5em}
 
 \newcommand\Code{MAT4220 FA22}
-\newcommand\Ass{HW07}
+\newcommand\Ass{HW09}
 \newcommand\name{Haoran Sun}
 \newcommand\mail{haoransun@link.cuhk.edu.cn}
 
@@ -166,141 +166,134 @@
 %     \end{align*}
 % \end{remark}
 
-\begin{problem}[P160 Q7]
-The solution is in the form of
+\begin{problem}[P197 Q11]\
+\begin{enumerate}[label=(\alph*)]
+\item Easy to verify that (18) satisfies $\Delta G = 0$ except at $\mathbf{x}=\mathbf{x}_0$,
+$G(\mathbf{x})|_{\partial D} = 0$, $G(\mathbf{x}) - \log|\mathbf{x}-\mathbf{x}_0|/2\pi$ finite
+at $\mathbf{x}_0$.
+
+\item Note that
 \begin{align*}
-    u(r, \theta, \phi) &=
-    \frac{c_1}{r} + c_2 + \frac{1}{6}r^2
+    \nabla G &= \frac{1}{2\pi}\frac{1}{\rho}(\mathbf{x}-\mathbf{x}_0)
+    - \frac{1}{2\pi}\frac{1}{\rho^*}(\mathbf{x}-\mathbf{x}_0^*)
 \end{align*}
-Applying the boundary condition where $u(a, \theta, \phi) = u(b, \theta, \phi) = 0$,
-we can solve $c_1$ and $c_2$
+Since $\mathbf{n} = \mathbf{x}/|\mathbf{x}|$, we have
 \begin{align*}
-    c_1 &= \frac{ab}{6}\frac{b^2-a^2}{b-a} = \frac{1}{6}ab(a+b) \quad
-    c_2 = \frac{1}{6}\frac{b^3-a^3}{b-a} = \frac{1}{6}(a^2+ab+b^2)
+    \nabla G\cdot\mathbf{n} &= \frac{1}{2\pi}\frac{1}{\rho}(a-r_0\cos\phi)
+    - \frac{1}{2\pi}\frac{1}{\rho^*}(a-r_0^*\cos\phi)\\
+    &= \frac{1}{2\pi}\frac{a-r_0a\cos\phi}{a^2+r_0^2-2ar_0\cos\phi}
+    -\frac{1}{2\pi}\frac{a-\frac{a^2}{r_0}\cos\phi}{a^2+\frac{a^4}{r_0^2}-2\frac{a^3}{r_0}\cos\phi}\\
+    &= \frac{1}{2\pi}\frac{1}{a}\frac{a^2-r_0a\cos\phi - r_0^2 + r_0a\cos\phi}{a^2+r_0^2-2ar_0\cos\phi}\\
+    &= \frac{a^2-r_0^2}{2\pi a}\frac{1}{a^2+r_0^2-2ar_0\cos\phi}
 \end{align*}
+Therefore we have proved Poisson's formula since
+\begin{align*}
+    u(\mathbf{x}_0) &= 
+    \frac{a^2-r_0^2}{2\pi a}
+    \oiint_{\partial D}\d\sigma\ 
+    u(\mathbf{x})\frac{\partial}{\partial \mathbf{n}}G(\mathbf{x},\mathbf{x}_0)
+    =
+    \frac{a^2-r_0^2}{2\pi a}
+    \oiint_{\partial D}\d\sigma \
+    \frac{u(\mathbf{x})}{a^2+r_0^2-2ar_0\cos\phi}
+\end{align*}
+
+\end{enumerate}
 \end{problem}
 
 
-\begin{problem}[P165 Q6]
-Let $X(x)Y(y)Z(z)$ be a solution, then
+\begin{problem}[P197 Q13]
+The Green's function for the whole ball is
 \begin{align*}
-    \Delta u = 0\Rightarrow
-    \frac{X''}{X} + \frac{Y''}{Y} + \frac{Z''}{Z} = 0
+    G(\mathbf{x}, \mathbf{x}_0) &= -\frac{1}{2\pi\rho}
+    + \frac{a}{|\mathbf{x}_0|}\frac{1}{4\pi\rho^*}
 \end{align*}
-set boundary conditions
+Reflect the green's function wrt $xy$ plane, we have
 \begin{align*}
-    u_x(0, y, z) = u_x(1, y, z) = u_y(x, 0, z) = u_y(x, 1, z)
-    = u_z(x, y, 0) = 0
-\end{align*}
-We have
-\begin{align*}
-    X_m(x) = \cos m\pi x,\ Y_n(y) = \cos n\pi y
-\end{align*}
-Hence
-\begin{align*}
-    \frac{Z''}{Z} = (m^2+n^2)\pi^2,\ Z'(0) = Z'(1) = 0
-    \Rightarrow
-    Z(z) = A\cosh \sqrt{m^2+n^2}\pi z
-\end{align*}
-Let the solution be in the form
-\begin{align*}
-    u(x, y, z) &= 
-    \frac{1}{4}A_{00} + 
-    \frac{1}{2}\sum_{m=1}^\infty A_{m0}\cos m\pi x\cosh m\pi z + 
-    \frac{1}{2}\sum_{n=1}^\infty A_{0n}\cos n\pi y\cosh m\pi z\\ &+
-    \sum_{m=1}^\infty \sum_{n=1}^\infty A_{mn}\cos m\pi \cos n\pi y \cosh\sqrt{m^2+n^2}\pi z
+    G(\mathbf{x}, \mathbf{x}_0) &= 
+    -\frac{1}{4\pi\rho} + \frac{a}{|\mathbf{x}_0|}\frac{1}{4\pi\rho^*}
+    +\frac{1}{4\pi\rho_z} - \frac{a}{|\mathbf{x}_0|}\frac{1}{4\pi\rho^*_z}
 \end{align*}
 where
 \begin{align*}
-    A_{mn} &= \frac{4}{\cosh\sqrt{m^2+n^2}\pi}\int_0^1\int_0^1\d x \d y
-    \cos m\pi x \cos n\pi y g(x, y)
+    \rho &= |\mathbf{x}-\mathbf{x}_0|\quad
+    \rho^* = |\mathbf{x}-\mathbf{x}_0^*|\quad
+    \rho_z = |\mathbf{x}-\mathbf{x}_{0z}|\quad
+    \rho_z^* = |\mathbf{x}-\mathbf{x}_{0z}^*|
+\end{align*}
+where $x_0^*=a^2\mathbf{x_0}/|\mathbf{x}_0|^2$,
+and $\mathbf{x}_{0z}$ is the reflection of $\mathbf{x}_0$ wrt $xy$ plane,
+$\mathbf{x}^*_{0z}$ is the reflection of $\mathbf{x}_0^*$ wrt $xy$ plane.
+
+\end{problem}
+
+
+\begin{problem}[P337 Q1]
+Easy to prove the linearity.
+To prove the continuity, since $f$ integrable on $\Omega$,
+then $\forall\phi_N\rightarrow\phi$, $\phi_N\in C^\infty(\Omega)$
+compactly supported, let $F=|\braket{f, 1}|$ on $\Omega$, then
+$\forall \epsilon>0$, $\exists N\in\N$ s.t. $\forall n>N$,
+we have $|\phi_N(x)-\phi(x)|<\epsilon/F$, and hence
+\begin{align*}
+    |\braket{f,\phi_n}-\braket{f,\phi}|
+    &=\left|
+        \int_\Omega\d x\ f(x)[\phi_n(x)-\phi(x)]
+    \right|\\
+    &<\int_\Omega\d x\ |f(x)|\frac{\epsilon}{F}=\epsilon
+\end{align*}
+which means the map is continuous.
+
+\end{problem}
+
+
+\begin{problem}[P337 Q2]
+\textit{Linearity:} direct prove by definition
+\begin{align*}
+    \braket{f',a\phi + b\psi} 
+    &=
+    -\braket{f,a\phi'+b\psi'}
+    =-\int_\Omega\d x\ f(x)(a\phi'(x)+b\psi'(x))
+    = -a\braket{f,\phi'} - b\braket{f,\psi'}\\
+    &= a\braket{f',\phi} + b\braket{f',\psi}
+\end{align*}
+
+\textit{Continuity:} since $\phi_N\rightarrow\phi$ uniformly 
+and $\phi_N\in C^\infty(\Omega)$ compactly supported,
+then $\phi_N'\rightarrow\phi'$ uniformly and
+$\phi_N'\in C^\infty(\Omega)$ compactly supported,
+hence
+\begin{align*}
+    \braket{f,\phi_N'}\rightarrow
+    \braket{f,\phi'}
+    \Rightarrow
+    \braket{f',\phi_N}\rightarrow
+    \braket{f',\phi}
 \end{align*}
 
 \end{problem}
 
 
-\begin{problem}[P172 Q2]
-Since 
+\begin{problem}[P337 Q5]
+Since
 \begin{align*}
-    u(r, \theta) &= \frac{1}{2}A_0 + \sum_{n=1}^\infty
-    r^n(A_n\cos n\theta + B_n\sin n\theta)
+    \frac{\d}{\d x}H(x-ct) &= \delta(x-ct)\quad
+    \frac{\d}{\d t}H(x-ct) = -c\delta(x-ct)\\
+    \frac{\d}{\d x}\delta(x-ct) &= \delta'(x-ct)\quad
+    \frac{\d}{\d t}\delta(x-ct) = -c\delta'(x-ct)
 \end{align*}
-we have
+Therefore $\forall\phi\in C^\infty(\Omega)$ and $\phi$ compactly supported, we have
 \begin{align*}
-    u(a, \theta) &= \frac{1}{2}A_0 + \sum_{n=1}^\infty
-    a^n(A_n\cos n\theta + B_n\sin n\theta) = 1 + 3\sin\theta\\
-    \Rightarrow A_0 &= 2,\ A_n = 0,\ B_1 = \frac{3}{a},\ B_2 = \cdots = 0
+    \braket{H, \phi_{tt}-c^2\phi_{xx}} &= 
+    \braket{H, \phi_{tt}} - c^2\braket{H, \phi_{xx}}\\
+    &= \braket{H_{tt}, \phi} - c^2\braket{H_{xx}, \phi}\\
+    &= \braket{H_{tt}-c^2H_{xx}, \phi}\\
+    &= 0
 \end{align*}
-which means $u(r, \theta) = 1 + 3r\sin\theta / a$.
+where means $H(x-ct)$ is a weak solution.
 
 \end{problem}
 
-
-
-\begin{problem}[P176 Q4]
-Let 
-\begin{align*}
-    u(r, \theta) &= \frac{1}{2}A_0 + \sum_{n=1}^\infty
-    r^{-n}(A_n\cos n\phi + B_n\sin n\phi)\\
-    A_n &= \frac{a^n}{\pi}\int_0^{2\pi}\d\phi h(\phi)\cos n\phi\\
-    B_n &= \frac{a^n}{\pi}\int_0^{2\pi}\d\phi h(\phi)\sin n\phi
-\end{align*}
-Therefore
-\begin{align*}
-    u(r, \theta) &= \frac{1}{2}\int_0^{2\pi}\d\phi\ h(\phi) + 
-    \sum_{n=1}^\infty (a/r)^{-n}\int_0^{2\pi} [h(\phi)\cos n\phi \cos n\theta
-    + h(\phi)\sin n\phi\sin n\theta]\\
-    &= \frac{1}{\pi}\int_0^{2\pi}\d \phi\ h(\phi)\left[ 
-        \frac{1}{2} + \sum_{n=1}^\infty (a/r)^{-n}(\cos n\phi\cos n\theta
-        + \sin n\phi \sin n\theta)
-    \right]\\
-    &= \frac{1}{\pi}\int_0^{2\pi}\d \phi\ h(\phi)\left[ 
-        \frac{1}{2} + \sum_{n=1}^\infty
-        (a/r)^{-n}\cos n(\phi-\theta)
-    \right]\\
-    &= \frac{1}{\pi}\int_0^{2\pi}\d \phi\ h(\phi)\left[ 
-        \frac{1}{2} + \frac{1}{2}\sum_{n=1}^\infty
-        (a/r)^{-n} e^{in\varphi} + 
-        (a/r)^{-n} e^{-in\varphi}
-    \right]\\
-    &= \frac{1}{2\pi}\int_0^{2\pi}\d \phi\ h(\phi)\left[ 
-        1 + \frac{ae^{i\varphi}}{r-ae^{i\varphi}} 
-        + \frac{ae^{-i\varphi}}{r-ae^{-i\varphi}}
-    \right]\\
-    &= \frac{1}{2\pi}\int_0^{2\pi}\d \phi\ h(\phi) \frac{r^2-a^2}{r^2+a^2-2ar\cos(\theta-\phi)}
-\end{align*}
-
-\end{problem}
-
-
-\begin{problem}[P176 Q13]
-In this case, the eigenfunction $\Theta(\theta)$ and $R(r)$ have the form
-\begin{align*}
-    \Theta_n(\theta) &= \sin\frac{n\pi(\theta-\alpha)}{\beta - \alpha}\quad
-    R_n(r) = A_n r^{\frac{n\pi}{\beta-\alpha}} + B_n r^{-\frac{n\pi}{\beta-\alpha}}
-\end{align*}
-Therefore
-\begin{align*}
-    u(r, \theta) &=
-    \sum_{n=1}^\infty \left(
-        A_n r^{\frac{n\pi}{\beta-\alpha}} + B_n r^{-\frac{n\pi}{\beta-\alpha}}
-    \right)\sin\frac{n\pi(\theta-\alpha)}{\beta-\alpha}
-    \\
-    A_n &= \frac{2}{\beta-\alpha}\frac{1}{a^{\frac{2n\pi}{\beta-\alpha}}
-    - b^{\frac{2n\pi}{\beta-\alpha}}}
-    \int_\alpha^\beta \d\theta\sin\frac{n\pi(\theta-\alpha)}{\beta-\alpha}[
-        a^{\frac{n\pi (\theta-\alpha)}{\beta-\alpha}}g(\theta) - 
-        b^{\frac{n\pi (\theta-\alpha)}{\beta-\alpha}}h(\theta)
-    ]
-    \\
-    B_n &= \frac{2}{\beta-\alpha}\frac{1}{a^{-\frac{2n\pi}{\beta-\alpha}}
-    - b^{-\frac{2n\pi}{\beta-\alpha}}}
-    \int_\alpha^\beta \d\theta\sin\frac{n\pi(\theta-\alpha)}{\beta-\alpha}[
-        a^{-\frac{n\pi (\theta-\alpha)}{\beta-\alpha}}g(\theta) - 
-        b^{-\frac{n\pi (\theta-\alpha)}{\beta-\alpha}}h(\theta)
-    ]
-\end{align*}
-\end{problem}
 
 
 
