@@ -232,7 +232,8 @@ $\mathbf{x}^*_{0z}$ is the reflection of $\mathbf{x}_0^*$ wrt $xy$ plane.
 Easy to prove the linearity.
 To prove the continuity, since $f$ integrable on $\Omega$,
 then $\forall\phi_N\rightarrow\phi$, $\phi_N\in C^\infty(\Omega)$
-compactly supported, let $F=|\braket{f, 1}|$ on $\Omega$, then
+compactly supported, let $F=|\braket{|f|, 1}|$ on $\Omega$
+(since $|f|$ also integrable), then
 $\forall \epsilon>0$, $\exists N\in\N$ s.t. $\forall n>N$,
 we have $|\phi_N(x)-\phi(x)|<\epsilon/F$, and hence
 \begin{align*}
@@ -275,22 +276,40 @@ hence
 
 
 \begin{problem}[P337 Q5]
+\begin{claim}
+$-c\braket{H_x, \phi} = \braket{H_t,\phi}$.
+\end{claim}
+\begin{proof}
 Since
 \begin{align*}
-    \frac{\d}{\d x}H(x-ct) &= \delta(x-ct)\quad
-    \frac{\d}{\d t}H(x-ct) = -c\delta(x-ct)\\
-    \frac{\d}{\d x}\delta(x-ct) &= \delta'(x-ct)\quad
-    \frac{\d}{\d t}\delta(x-ct) = -c\delta'(x-ct)
+    \braket{H_x,\phi} &= 
+    -\iint_\Omega \d x\d t\ 
+    H(x-ct)\phi_x(x, t)
+    = -\int_0^\infty\d t\int_{ct}^\infty\d x\ \phi_x(x, t)
+    = \int_0^\infty\d t\ \phi(ct, t)\\
+    \braket{H_t,\phi} &= 
+    -\iint_\Omega\d x \d t\
+    H(x-ct)\phi_t(x, t)
+    = -\int_0^\infty\d x\int_0^{x/c}\d t\
+    \phi_t(x, t)
+    = -\int_0^\infty\d x\ \phi(x, x/c)\\
+    &= -c\int_0^\infty\d u\ \phi(cu, u)
 \end{align*}
-Therefore $\forall\phi\in C^\infty(\Omega)$ and $\phi$ compactly supported, we have
+Hence $c\braket{H_x, \phi} = \braket{H_t,\phi}$.
+\end{proof}
+Therefore
 \begin{align*}
-    \braket{H, \phi_{tt}-c^2\phi_{xx}} &= 
-    \braket{H, \phi_{tt}} - c^2\braket{H, \phi_{xx}}\\
-    &= \braket{H_{tt}, \phi} - c^2\braket{H_{xx}, \phi}\\
-    &= \braket{H_{tt}-c^2H_{xx}, \phi}\\
-    &= 0
+    c^2\braket{H_{xx}, \phi} &= 
+    -c^2\braket{H_x, \phi_x}
+    = c\braket{H_t, \phi_x}
+    = -c\braket{H, \phi_{xt}}\\
+    \braket{H_{tt}, \phi} &= 
+    -\braket{H_t, \phi_t}
+    = c\braket{H_x, \phi_t}
+    = -c\braket{H, \phi_{tx}}
 \end{align*}
-where means $H(x-ct)$ is a weak solution.
+Therefore we have $\braket{H_{tt},\phi}=c^2\braket{H_{xx}, \phi}$,
+which means that $H(x-ct)$ is a weak solution.
 
 \end{problem}
 
